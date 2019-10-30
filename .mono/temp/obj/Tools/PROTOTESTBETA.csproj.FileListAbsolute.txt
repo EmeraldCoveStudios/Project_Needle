@@ -1,0 +1,5 @@
+C:\Users\Velve\Documents\Godot Test Files\PROTOTESTBETA\.mono\temp\bin\Tools\PROTOTESTBETA.dll
+C:\Users\Velve\Documents\Godot Test Files\PROTOTESTBETA\.mono\temp\bin\Tools\PROTOTESTBETA.pdb
+C:\Users\Velve\Documents\Godot Test Files\PROTOTESTBETA\.mono\temp\obj\Tools\PROTOTESTBETA.csprojAssemblyReference.cache
+C:\Users\Velve\Documents\Godot Test Files\PROTOTESTBETA\.mono\temp\obj\Tools\PROTOTESTBETA.dll
+C:\Users\Velve\Documents\Godot Test Files\PROTOTESTBETA\.mono\temp\obj\Tools\PROTOTESTBETA.pdb
