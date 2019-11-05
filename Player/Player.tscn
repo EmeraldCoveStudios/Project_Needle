@@ -7,7 +7,6 @@
 extents = Vector2( 5.22526, 3.62618 )
 
 [node name="Node2D" type="Node2D"]
-editor/display_folded = true
 position = Vector2( 913.126, 480.563 )
 scale = Vector2( 4, 4 )
 
@@ -23,3 +22,6 @@ hframes = 6
 visible = false
 position = Vector2( 0.306364, 4.4204 )
 shape = SubResource( 1 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Player"]
+cast_to = Vector2( 0, 5 )
