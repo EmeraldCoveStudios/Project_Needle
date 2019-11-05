@@ -5,13 +5,13 @@ const Speed = 350
 var movedir = Vector2(0,0)
 var facing = Vector2(0,1)
 
-var castLength = 5
+var cast_length = 5
 
-var lightAttackPower = 5
-var heavyAttackPower = 10
+var light_attack_power = 5
+var heavy_attack_power = 10
 
 func _ready():
-	$RayCast2D.cast_to = facing * castLength;
+	$RayCast2D.cast_to = facing * cast_length;
 
 func _physics_process(delta):
 	controls_loop()
@@ -36,18 +36,18 @@ func action_loop():
 	
 	#If the cast doesn't point in the same direction as we move, change where the cast points
 	if(cast.cast_to.normalized() != movedir && movedir != Vector2.ZERO):
-		cast.cast_to = movedir * castLength
+		cast.cast_to = movedir * cast_length
 		cast.force_raycast_update()
 		
 	#If the cast has found an object and the object can be attacked, attack it
-	var attackPower = 0;
+	var attack_power = 0;
 	if(Input.is_action_just_pressed("light_attack")):
-		attackPower = lightAttackPower;
+		attack_power = light_attack_power;
 	elif(Input.is_action_just_pressed("heavy_attack")):
-		attackPower = heavyAttackPower;
+		attack_power = heavy_attack_power;
 	
-	if(attackPower != 0 && cast.get_collider() != null):
+	if(attack_power != 0 && cast.get_collider() != null):
 		var col = cast.get_collider()
 		if(col.has_method("receive_attack")):
-			col.receive_attack(self, lightAttackPower)
+			col.receive_attack(self, attack_power)
 	
