@@ -1,27 +1,91 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/GodotPlayer.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.22526, 3.62618 )
+extents = Vector2( 6.5, 3 )
 
-[node name="Node2D" type="Node2D"]
-position = Vector2( 913.126, 480.563 )
-scale = Vector2( 4, 4 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3, 5 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 5, 5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 6.5, 8 )
+
+[node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Sprite" type="Sprite" parent="Player"]
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 6
 hframes = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0.306364, 4.4204 )
+position = Vector2( 0.5, 5 )
 shape = SubResource( 1 )
 
-[node name="RayCast2D" type="RayCast2D" parent="Player"]
-cast_to = Vector2( 0, 5 )
+[node name="AttackAreas" type="Node2D" parent="."]
+
+[node name="Up" type="Area2D" parent="AttackAreas"]
+editor/display_folded = true
+position = Vector2( 0, -3 )
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackAreas/Up"]
+shape = SubResource( 2 )
+
+[node name="Right" type="Area2D" parent="AttackAreas"]
+position = Vector2( 8, 0 )
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackAreas/Right"]
+shape = SubResource( 3 )
+
+[node name="Down" type="Area2D" parent="AttackAreas"]
+editor/display_folded = true
+position = Vector2( 0, 5 )
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackAreas/Down"]
+shape = SubResource( 4 )
+
+[node name="Left" type="Area2D" parent="AttackAreas"]
+position = Vector2( -8, 0 )
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackAreas/Left"]
+shape = SubResource( 3 )
+
+[node name="AttackArea" type="Area2D" parent="."]
+editor/display_folded = true
+visible = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+
+[node name="Hitbox" type="Area2D" parent="." groups=[
+"hitboxes",
+]]
+editor/display_folded = true
+visible = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0.5, 0 )
+shape = SubResource( 5 )
+[connection signal="area_entered" from="AttackArea" to="." method="_area_entered_attackzone"]
+[connection signal="area_exited" from="AttackArea" to="." method="_area_exited_attackzone"]
