@@ -55,12 +55,20 @@ func match_attack_area(var facing):
 	match facing:
 		Vector2.UP:
 			copy_area($AttackAreas/Up, $AttackArea)
+			$Sprite.frame = 4
+			$Sprite.scale.x = 1
 		Vector2.RIGHT:
 			copy_area($AttackAreas/Right, $AttackArea)
+			$Sprite.frame = 3
+			$Sprite.scale.x = 1
 		Vector2.DOWN:
 			copy_area($AttackAreas/Down, $AttackArea)
+			$Sprite.frame = 0
+			$Sprite.scale.x = 1
 		Vector2.LEFT:
 			copy_area($AttackAreas/Left, $AttackArea)
+			$Sprite.frame = 3
+			$Sprite.scale.x = -1
 			
 #Copies position, scale and shape of an area to another area
 func copy_area(var source, var destination):
