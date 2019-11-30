@@ -17,6 +17,10 @@ _global_script_class_icons={
 
 config/name="PROTOTESTBETA"
 
+[autoload]
+
+global="*res://Scripts/global.gd"
+
 [display]
 
 window/size/width=1920

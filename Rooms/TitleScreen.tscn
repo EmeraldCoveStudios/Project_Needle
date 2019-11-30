@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+export(String, FILE, \"*.tscn,*.scn\") var new_game_scene
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+func _on_NewGame_pressed():
+	get_node(\"/root/global\").goto_scene(new_game_scene)
+
+func _on_QuitGame_pressed():
+	get_tree().quit()
+"
+
+[node name="Control" type="Control"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+new_game_scene = "res://Rooms/Test.tscn"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 650.0
+margin_top = 100.0
+margin_right = -650.0
+margin_bottom = -100.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+editor/display_folded = true
+margin_right = 620.0
+margin_bottom = 880.0
+custom_constants/separation = 50
+
+[node name="NewGame" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_right = 620.0
+margin_bottom = 182.0
+size_flags_vertical = 3
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 232.0
+margin_right = 620.0
+margin_bottom = 414.0
+size_flags_vertical = 3
+text = "Load Game"
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 464.0
+margin_right = 620.0
+margin_bottom = 646.0
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="QuitGame" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 696.0
+margin_right = 620.0
+margin_bottom = 880.0
+size_flags_vertical = 3
+text = "Quit Game"
+[connection signal="pressed" from="MarginContainer/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitGame" to="." method="_on_QuitGame_pressed"]
